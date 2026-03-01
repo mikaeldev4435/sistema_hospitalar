@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendamentos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='agendar.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Agendar Consulta</h1>
+
+        <form action="{{ url_for('agendar', paciente_id=paciente_id) }}" method="POST">
+
+            <label for="profissional">Escolha o Médico:</label>
+            <select id="profissional" name="profissional_id" required>
+                <option value="" disabled selected>Selecione um profissional...</option>
+                {% for prof in profissionais %}
+                    <option value="{{ prof[0] }}">{{ prof[1] }} ({{ prof[2] }})</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required><br><br>
+
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" name="hora" required><br><br>
+
+            <label for="descricao">Descrição/Motivo:</label>
+            <textarea id="descricao" name="descricao" rows="2" cols="30" required></textarea><br><br>
+
+            <button type="submit" class="agendar-btn submit-btn">Confirmar Agendamento</button>
+        </form>
+
+        <br>
+        <a href="{{ url_for('index') }}" class="back-btn submit-btn">Voltar para a Lista</a>
+    </div>
+</body>
+</html>

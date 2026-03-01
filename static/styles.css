@@ -1,0 +1,104 @@
+body{
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container{
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+li{
+    margin-bottom: 5px;
+}
+
+.add-patient{
+    background-color: #4CAF50;
+    border: none;
+    color:white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.agendar-btn{
+    background-color: rgb(63,43,177);
+    border: none;
+    color:white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.agendar-btn {
+    display: block;
+    width: 86%;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: rgb(41, 4, 250);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.clear-btn{
+    background-color: rgb(209,55,55);
+    border: none;
+    color:white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.clear-btn {
+    display: block;
+    width: 86%;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: rgb(209, 55, 55);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.add-patient,
+.clear-btn,
+.agendar-btn{
+    float: center;
+}

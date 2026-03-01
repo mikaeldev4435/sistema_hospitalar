@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Hospitalar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Painel Principal</h1>
+
+        <h2>Lista de Pacientes:</h2>
+        <ul>
+            {% for paciente in pacientes %}
+            <li>
+                {{ paciente[1] }} - {{ paciente[2] }} anos - {{ paciente[3] }}
+
+                <a href="{{ url_for('agendar', paciente_id=paciente[0]) }}" class="agendar-btn submit-btn" style="padding: 5px 10px; margin-left: 10px; font-size: 12px;">Agendar Consulta</a>
+                <a href="{{ url_for('prontuario', paciente_id=paciente[0]) }}" class="submit-btn" style="padding: 5px 10px; margin-left: 5px; font-size: 12px; background-color: #17a2b8; color: white; text-decoration: none; border-radius: 4px;">Prontuário</a>
+
+            {% else %}
+            <li>Nenhum paciente cadastrado.</li>
+            {% endfor %}
+        </ul>
+
+        <br>
+        <hr>
+        <br>
+
+        <a href="{{ url_for('novo_paciente') }}" class="add-patient" style="display: inline-block; text-decoration: none; text-align: center; margin-bottom: 10px;">Adicionar Paciente</a>
+
+        <a href="{{ url_for('novo_profissional') }}" class="add-patient" style="display: inline-block; text-decoration: none; text-align: center; background-color: #007bff; margin-bottom: 10px;">Cadastrar Médico</a>
+        <a href="{{ url_for('listar_consultas') }}" class="add-patient" style="display: inline-block; text-decoration: none; text-align: center; background-color: #28a745; margin-bottom: 10px;">Ver Agenda de Consultas</a>
+
+        <br>
+        <a href="{{ url_for('limpar_pacientes') }}" class="clear-btn" style="display: inline-block; text-decoration: none; text-align: center;">Limpar Pacientes</a>
+    </div>
+</body>
+</html>

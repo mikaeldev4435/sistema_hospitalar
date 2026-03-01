@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultas Agendadas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container" style="max-width: 800px;">
+        <h1>Agenda de Consultas</h1>
+
+        <table border="1" width="100%" style="border-collapse: collapse; text-align: left; background-color: white;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 10px;">Data e Hora</th>
+                    <th style="padding: 10px;">Paciente</th>
+                    <th style="padding: 10px;">Médico</th>
+                    <th style="padding: 10px;">Motivo</th>
+                    <th style="padding: 10px;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in consultas %}
+                <tr>
+                    <td style="padding: 10px;">{{ c[3] }}</td>
+                    <td style="padding: 10px;">{{ c[1] }}</td>
+                    <td style="padding: 10px;">{{ c[2] }}</td>
+                    <td style="padding: 10px;">{{ c[4] }}</td>
+                    <td style="padding: 10px;"><strong>{{ c[5] }}</strong></td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" style="padding: 20px; text-align: center;">Nenhuma consulta agendada no momento.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+        <a href="{{ url_for('index') }}" class="back-btn submit-btn" style="display: inline-block; text-decoration: none; text-align: center;">Voltar ao Painel</a>
+    </div>
+</body>
+</html>

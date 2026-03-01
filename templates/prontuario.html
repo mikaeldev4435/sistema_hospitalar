@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Prontuário Médico</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container" style="max-width: 800px;">
+        <h1>Prontuário de {{ paciente[1] }}</h1>
+        <p><strong>Idade:</strong> {{ paciente[2] }} anos | <strong>CPF:</strong> {{ paciente[4] }}</p>
+
+        <hr><br>
+
+        <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px;">
+            <h3>Adicionar Novo Registro (Evolução Clínica)</h3>
+            <form action="{{ url_for('prontuario', paciente_id=paciente[0]) }}" method="POST">
+
+                <label>Médico Responsável:</label>
+                <select name="profissional_id" required>
+                    <option value="" disabled selected>Selecione o médico...</option>
+                    {% for prof in profissionais %}
+                        <option value="{{ prof[0] }}">{{ prof[1] }} ({{ prof[2] }})</option>
+                    {% endfor %}
+                </select><br><br>
+
+                <label>Data do Registro:</label>
+                <input type="date" name="data_registro" required><br><br>
+
+                <label>Diagnóstico Preliminar:</label>
+                <input type="text" name="diagnostico" style="width: 100%;" required><br><br>
+
+                <label>Observações Clínicas:</label>
+                <textarea name="observacoes" rows="4" style="width: 100%;" required></textarea><br><br>
+
+                <button type="submit" class="agendar-btn submit-btn" style="background-color: #17a2b8;">Salvar no Prontuário</button>
+            </form>
+        </div>
+
+        <br><hr><br>
+
+        <h3>Histórico Clínico</h3>
+        <table border="1" width="100%" style="border-collapse: collapse; text-align: left; background-color: white;">
+            <thead>
+                <tr style="background-color: #e9ecef;">
+                    <th style="padding: 10px;">Data</th>
+                    <th style="padding: 10px;">Médico</th>
+                    <th style="padding: 10px;">Diagnóstico</th>
+                    <th style="padding: 10px;">Observações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reg in historico %}
+                <tr>
+                    <td style="padding: 10px;">{{ reg[0] }}</td>
+                    <td style="padding: 10px;">{{ reg[1] }}</td>
+                    <td style="padding: 10px;"><strong>{{ reg[2] }}</strong></td>
+                    <td style="padding: 10px;">{{ reg[3] }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" style="padding: 20px; text-align: center;">Nenhum registro encontrado para este paciente.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+        <a href="{{ url_for('index') }}" class="back-btn submit-btn" style="display: inline-block; text-decoration: none; text-align: center;">Voltar ao Painel</a>
+    </div>
+</body>
+</html>
