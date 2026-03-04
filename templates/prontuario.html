@@ -47,19 +47,22 @@
                     <th style="padding: 10px;">Médico</th>
                     <th style="padding: 10px;">Diagnóstico</th>
                     <th style="padding: 10px;">Observações</th>
-                </tr>
+                    <th style="padding: 10px;">Ações</th> </tr>
             </thead>
             <tbody>
                 {% for reg in historico %}
                 <tr>
-                    <td style="padding: 10px;">{{ reg[0] }}</td>
                     <td style="padding: 10px;">{{ reg[1] }}</td>
-                    <td style="padding: 10px;"><strong>{{ reg[2] }}</strong></td>
-                    <td style="padding: 10px;">{{ reg[3] }}</td>
+                    <td style="padding: 10px;">{{ reg[2] }}</td>
+                    <td style="padding: 10px;"><strong>{{ reg[3] }}</strong></td>
+                    <td style="padding: 10px;">{{ reg[4] }}</td>
+                    <td style="padding: 10px;">
+                        <a href="{{ url_for('receita', prontuario_id=reg[0]) }}" class="submit-btn" style="padding: 5px 10px; font-size: 12px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px;">Receita</a>
+                    </td>
                 </tr>
                 {% else %}
                 <tr>
-                    <td colspan="4" style="padding: 20px; text-align: center;">Nenhum registro encontrado para este paciente.</td>
+                    <td colspan="5" style="padding: 20px; text-align: center;">Nenhum registro encontrado para este paciente.</td>
                 </tr>
                 {% endfor %}
             </tbody>

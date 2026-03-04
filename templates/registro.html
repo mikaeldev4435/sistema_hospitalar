@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f4;">
+    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px;">
+        <h2 style="text-align: center;">Criar Conta</h2>
+        <form action="{{ url_for('registro') }}" method="POST">
+            <label>E-mail:</label><br>
+            <input type="email" name="email" required style="width: 100%; margin-bottom: 10px; padding: 5px;"><br>
+
+            <label>Senha:</label><br>
+            <input type="password" name="senha" required style="width: 100%; margin-bottom: 10px; padding: 5px;"><br>
+
+            <label>Perfil:</label><br>
+            <select name="tipo_perfil" style="width: 100%; margin-bottom: 20px; padding: 5px;">
+                <option value="admin">Administrador</option>
+                <option value="profissional">Profissional de Saúde</option>
+                <option value="paciente">Paciente</option>
+            </select><br>
+
+            <button type="submit" class="submit-btn" style="width: 100%; background-color: #28a745;">Registrar</button>
+        </form>
+        <p style="text-align: center; margin-top: 15px;"><a href="{{ url_for('login') }}">Já tenho conta (Login)</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Leitos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container" style="max-width: 900px;">
+        <h1>Visão do Administrador: Controle de Leitos</h1>
+
+        <div style="background-color: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+            <h3>Cadastrar Novo Leito</h3>
+            <form action="{{ url_for('gerenciar_leitos') }}" method="POST">
+                <input type="text" name="numero" placeholder="Ex: UTI-01, Quarto 204" required style="padding: 5px;">
+                <button type="submit" class="submit-btn" style="background-color: #343a40; color: white; padding: 6px 15px; border: none; border-radius: 4px; cursor: pointer;">Adicionar Leito</button>
+            </form>
+        </div>
+
+        <h3>Painel de Internações</h3>
+        <table border="1" width="100%" style="border-collapse: collapse; text-align: left; background-color: white;">
+            <thead>
+                <tr style="background-color: #343a40; color: white;">
+                    <th style="padding: 10px;">Leito</th>
+                    <th style="padding: 10px;">Status</th>
+                    <th style="padding: 10px;">Paciente Internado</th>
+                    <th style="padding: 10px;">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for leito in leitos %}
+                <tr>
+                    <td style="padding: 10px;"><strong>{{ leito[1] }}</strong></td>
+
+                    <td style="padding: 10px; color: {% if leito[2] == 'Livre' %}green{% else %}red{% endif %}; font-weight: bold;">
+                        {{ leito[2] }}
+                    </td>
+
+                    <td style="padding: 10px;">
+                        {% if leito[3] %}
+                            {{ leito[3] }}
+                        {% else %}
+                            ---
+                        {% endif %}
+                    </td>
+
+                    <td style="padding: 10px;">
+                        {% if leito[2] == 'Livre' %}
+                            <form action="{{ url_for('alocar_leito', leito_id=leito[0]) }}" method="POST" style="margin: 0;">
+                                <select name="paciente_id" required style="padding: 3px;">
+                                    <option value="" disabled selected>Selecione o paciente...</option>
+                                    {% for p in pacientes %}
+                                        <option value="{{ p[0] }}">{{ p[1] }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" style="background-color: #28a745; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer;">Internar</button>
+                            </form>
+                        {% else %}
+                            <a href="{{ url_for('liberar_leito', leito_id=leito[0]) }}" style="background-color: #dc3545; color: white; text-decoration: none; padding: 4px 8px; border-radius: 3px;">Dar Alta / Liberar</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" style="padding: 20px; text-align: center;">Nenhum leito cadastrado ainda.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br><br>
+        <a href="{{ url_for('index') }}" class="back-btn submit-btn" style="display: inline-block; text-decoration: none; text-align: center;">Voltar ao Painel</a>
+    </div>
+</body>
+</html>

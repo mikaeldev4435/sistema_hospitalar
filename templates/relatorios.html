@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatórios Administrativos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container" style="max-width: 800px;">
+        <h1>Dashboard Administrativo</h1>
+        <p>Visão geral dos números do hospital.</p>
+
+        <hr><br>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+
+            <div style="background-color: #f8f9fa; border-left: 5px solid #007bff; padding: 20px; width: 200px; border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                <h3 style="margin: 0; color: #555; font-size: 16px;">Total de Pacientes</h3>
+                <p style="font-size: 32px; font-weight: bold; color: #007bff; margin: 10px 0 0 0;">{{ total_pacientes }}</p>
+            </div>
+
+            <div style="background-color: #f8f9fa; border-left: 5px solid #28a745; padding: 20px; width: 200px; border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                <h3 style="margin: 0; color: #555; font-size: 16px;">Médicos Cadastrados</h3>
+                <p style="font-size: 32px; font-weight: bold; color: #28a745; margin: 10px 0 0 0;">{{ total_profissionais }}</p>
+            </div>
+
+            <div style="background-color: #f8f9fa; border-left: 5px solid #17a2b8; padding: 20px; width: 200px; border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                <h3 style="margin: 0; color: #555; font-size: 16px;">Consultas Agendadas</h3>
+                <p style="font-size: 32px; font-weight: bold; color: #17a2b8; margin: 10px 0 0 0;">{{ total_consultas }}</p>
+            </div>
+
+            <div style="background-color: #f8f9fa; border-left: 5px solid #dc3545; padding: 20px; width: 200px; border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                <h3 style="margin: 0; color: #555; font-size: 16px;">Ocupação de Leitos</h3>
+                <p style="font-size: 32px; font-weight: bold; color: #dc3545; margin: 10px 0 0 0;">{{ leitos_ocupados }} / {{ total_leitos }}</p>
+                <p style="margin: 5px 0 0 0; font-size: 14px; color: #666;">{{ leitos_livres }} leitos livres</p>
+            </div>
+
+        </div>
+
+        <br><br><hr><br>
+        <a href="{{ url_for('index') }}" class="back-btn submit-btn" style="display: inline-block; text-decoration: none; text-align: center;">Voltar ao Painel Principal</a>
+    </div>
+</body>
+</html>
