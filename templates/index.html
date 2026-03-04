@@ -14,7 +14,7 @@
         <ul>
             {% for paciente in pacientes %}
             <li>
-                {{ paciente[1] }} - {{ paciente[2] }} anos - {{ paciente[3] }}
+                {{ paciente[2] }} - {{ paciente[3] }} anos - {{ paciente[4] }}
 
                 <a href="{{ url_for('agendar', paciente_id=paciente[0]) }}" class="agendar-btn submit-btn" style="padding: 5px 10px; margin-left: 10px; font-size: 12px;">Agendar Consulta</a>
                 <a href="{{ url_for('prontuario', paciente_id=paciente[0]) }}" class="submit-btn" style="padding: 5px 10px; margin-left: 5px; font-size: 12px; background-color: #17a2b8; color: white; text-decoration: none; border-radius: 4px;">Prontuário</a>
